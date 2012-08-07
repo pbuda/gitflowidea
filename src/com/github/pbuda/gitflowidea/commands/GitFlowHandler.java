@@ -97,7 +97,10 @@ public class GitFlowHandler {
         try {
             LOG.info(commandLine.getCommandLineString());
             process = commandLine.createProcess();
+            process.waitFor();
         } catch (ExecutionException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (InterruptedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
