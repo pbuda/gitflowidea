@@ -25,7 +25,7 @@ import com.intellij.openapi.actionSystem.*;
 public class GitFlowInitAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         GitFlow gitFlow = new GitFlow();
-        int exitCode = gitFlow.init(e.getProject(), e.getProject().getBaseDir());
+        int exitCode = gitFlow.initDefault(e.getProject(), e.getProject().getBaseDir());
         if (exitCode != 1) {
             throw new IllegalStateException();
         }

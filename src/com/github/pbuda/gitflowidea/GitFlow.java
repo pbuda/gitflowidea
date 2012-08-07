@@ -24,7 +24,7 @@ import com.intellij.openapi.vfs.*;
  * .
  */
 public class GitFlow {
-    public int init(Project project, VirtualFile directory) {
+    public int initDefault(Project project, VirtualFile directory) {
         GitFlowHandler handler = new GitFlowHandler(project, directory, GitFlowCommand.INIT);
         handler.addParameter("-d");
         return run(handler);
