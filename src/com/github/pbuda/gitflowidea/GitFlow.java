@@ -14,20 +14,24 @@
  * limitations under the License.
  */
 
-package com.github.pbuda.gitflowidea.action;
+package com.github.pbuda.gitflowidea;
 
-import com.github.pbuda.gitflowidea.*;
-import com.intellij.openapi.actionSystem.*;
+import com.github.pbuda.gitflowidea.commands.*;
+import com.intellij.openapi.project.*;
+import com.intellij.openapi.vfs.*;
 
 /**
  * .
  */
-public class GitFlowInitAction extends AnAction {
-    public void actionPerformed(AnActionEvent e) {
-        GitFlow gitFlow = new GitFlow();
-        int exitCode = gitFlow.init(e.getProject(), e.getProject().getBaseDir());
-        if (exitCode != 1) {
-            throw new IllegalStateException();
-        }
+public class GitFlow {
+    public int init(Project project, VirtualFile directory) {
+        GitFlowHandler handler = new GitFlowHandler(project, directory, GitFlowCommand.INIT);
+        handler.addParameter("-d");
+        return run(handler);
+    }
+
+    private int run(GitFlowHandler handler) {
+        handler.start();
+        return 1;
     }
 }
