@@ -53,7 +53,10 @@ on how to target different products -->
     </project-components>
 
     <actions>
-        <!-- Add your actions here -->
+        <action id="GitFlow.Init" class="com.github.pbuda.gitflowidea.action.GitFlowInitAction" text="Git Flow Init"
+                description="Initializes git flow with default settings">
+            <add-to-group group-id="Vcs.Import"/>
+        </action>
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
