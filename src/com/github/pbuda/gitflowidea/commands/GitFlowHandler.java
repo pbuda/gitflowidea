@@ -18,9 +18,11 @@ package com.github.pbuda.gitflowidea.commands;
 
 import com.intellij.execution.*;
 import com.intellij.execution.configurations.*;
+import com.intellij.openapi.components.*;
 import com.intellij.openapi.diagnostic.*;
 import com.intellij.openapi.project.*;
 import com.intellij.openapi.vfs.*;
+import git4idea.config.*;
 import org.jetbrains.annotations.*;
 
 import java.io.*;
@@ -71,9 +73,11 @@ public class GitFlowHandler {
         this.workingDirectory = directory;
         this.command = command;
 
+        GitVcsApplicationSettings settings = ServiceManager.getService(GitVcsApplicationSettings.class);
+
         this.commandLine = new GeneralCommandLine();
         this.commandLine.setWorkDirectory(this.workingDirectory);
-        this.commandLine.setExePath("C:\\Program Files (x86)\\Git\\bin\\git.exe");
+        this.commandLine.setExePath(settings.getPathToGit());
         this.commandLine.addParameter("flow");
         this.commandLine.addParameter(command.getCommand());
     }
